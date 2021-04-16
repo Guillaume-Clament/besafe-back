@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-const utilisateursRouter = require('./routes/utilisateurs.js');
+const utilisateursRouter = require('./routes/utilisateursController.js');
 app.use('/utilisateurs', utilisateursRouter);
 
 // app.get('/', (req, res) => res.send('Hello World!'));

@@ -1,6 +1,7 @@
 // Constructeur des utilisateurs
 class Utilisateur {
-	constructor(nom, dateNaissance, password, email, date) {
+	constructor(id, nom, dateNaissance, password, email, date) {
+		this.id = id;
 		this.nom = nom;
 		this.dateNaissance = dateNaissance;
 		this.password = password;
@@ -8,3 +9,5 @@ class Utilisateur {
 		this.date = new Date();
 	}
 }
+
+module.exports = Utilisateur;
