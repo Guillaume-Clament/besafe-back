@@ -1,0 +1,31 @@
+POST http://localhost:3000/utilisateurs
+Content-Type: application/json
+
+{
+    "nom" : "Aly",
+    "password" : "monmdp",
+    "email" : "Aly@aka-Ali.com",
+    "dateNaissance" : "04/02/1999"
+}
+
+###
+
+GET http://localhost:3000/utilisateurs/XvkB6gS2OlSxSOF9B
+
+###
+
+DELETE http://localhost:3000/utilisateurs/WtI6YtkcM6yWQkAVOdlA
+
+
+
+###
+
+PUT http://localhost:3000/utilisateurs/XgkEDmTqGB1cvfB1g
+Content-Type: application/json
+
+{
+    "nom" : "Aly",
+    "password" : "mdp",
+    "email" : "Aly@aka-Ali.com",
+    "dateNaissance" : "04/02/1999"
+}
