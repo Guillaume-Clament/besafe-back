@@ -2,30 +2,35 @@ POST http://localhost:3000/utilisateurs
 Content-Type: application/json
 
 {
-    "nom" : "Aly",
-    "password" : "monmdp",
+    "pseudo" : "alyRady",
+    "mdp" : "monmdp",
+    "nom" : "RADY",
+    "prenom" : "Aly",
     "email" : "Aly@aka-Ali.com",
-    "dateNaissance" : "04/02/1999"
+    "dateNaissance" : "04/02/1999",
+    "numTel" : "0123456789",
+    "latitude" : "101010",
+    "longitude" : "34384434",
+    "faceId" : "myFaceId",
+    "photo" : "myPhoto",
+    "adresseDomicile" : "myAdresse"
 }
 
 ###
 
-GET http://localhost:3000/utilisateurs/XvkB6gS2OlSxSOF9B
+GET http://localhost:3000/utilisateurs/
 
 ###
 
-DELETE http://localhost:3000/utilisateurs/WtI6YtkcM6yWQkAVOdlA
+DELETE http://localhost:3000/utilisateurs/CQiJfcsK5yWKiVd01yh4
 
 
 
 ###
 
-PUT http://localhost:3000/utilisateurs/XgkEDmTqGB1cvfB1g
+PUT http://localhost:3000/utilisateurs/CQiJfcsK5yWKiVd01yh4
 Content-Type: application/json
 
 {
-    "nom" : "Aly",
-    "password" : "mdp",
-    "email" : "Aly@aka-Ali.com",
-    "dateNaissance" : "04/02/1999"
+    "longitude" : "77777"
 }

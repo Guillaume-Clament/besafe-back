@@ -24,17 +24,24 @@ app.get('/', async (req, res) => {
 		const utilisateurs = await firestore.collection('utilisateurs');
 		const data = await utilisateurs.get();
 		var usersArray = [];
-		if (data.emty) {
+		if (data.empty) {
 			res.status(404).send('No users found');
 		} else {
 			data.forEach(doc => {
 				const utilisateur = new Utilisateur(
 					doc.id,
+					doc.data().pseudo,
+					doc.data().mdp,
 					doc.data().nom,
-					doc.data().dateNaissance,
-					doc.data().password,
+					doc.data().prenom,
 					doc.data().email,
-					doc.data().date
+					doc.data().dateNaissance,
+					doc.data().numTel,
+					doc.data().latitude,
+					doc.data().longitude,
+					doc.data().faceId,
+					doc.data().photo,
+					doc.data().adresseDomicile
 				);
 				usersArray.push(utilisateur);
 			});
@@ -56,11 +63,18 @@ app.get('/:id', async (req, res) => {
 		} else {
 			utilisateur = new Utilisateur(
 				data.id,
+				data.data().pseudo,
+				data.data().mdp,
 				data.data().nom,
-				data.data().dateNaissance,
-				data.data().password,
+				data.data().prenom,
 				data.data().email,
-				data.data().date
+				data.data().dateNaissance,
+				data.data().numTel,
+				data.data().latitude,
+				data.data().longitude,
+				data.data().faceId,
+				data.data().photo,
+				data.data().adresseDomicile
 			);
 			res.status(200).json(utilisateur);
 		}
@@ -90,7 +104,6 @@ app.put('/:id', async (req, res) => {
 		if (!doc.exists) {
 			res.status(404).json('Utilisateur not found');
 		} else {
-			console.log(user);
 			await user.update(data);
 			res.status(201).json('Utilisateur mis à jour successfuly');
 		}

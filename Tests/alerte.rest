@@ -1,0 +1,25 @@
+POST http://localhost:3000/alertes
+Content-Type: application/json
+
+{
+    "typeAlerte" : "FACE_ID"
+}
+
+###
+
+GET http://localhost:3000/alertes/
+
+###
+
+DELETE http://localhost:3000/alertes/jXlnkQFZjcC3kYLltP9W
+
+
+
+###
+
+PUT http://localhost:3000/alertes/jXlnkQFZjcC3kYLltP9W
+Content-Type: application/json
+
+{
+    "typeAlerte" : "CODE_SECRET"
+}
