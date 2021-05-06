@@ -1,0 +1,43 @@
+POST http://localhost:3000/groupes
+Content-Type: application/json
+
+{
+    "pseudo" : "alyRady",
+    "mdp" : "monmdp",
+    "nom" : "RADY",
+    "prenom" : "Aly",
+    "email" : "Aly@aka-Ali.com",
+    "dateNaissance" : "04/02/1999",
+    "numTel" : "0123456789",
+    "latitude" : "101010",
+    "longitude" : "34384434",
+    "faceId" : "myFaceId",
+    "photo" : "myPhoto",
+    "adresseDomicile" : "myAdresse"
+
+
+    "nom" : "AL3C",
+    "photo" : "maFace",
+    "listeUtilisateurs" : "help",
+    "listeMessages" : "help",
+    "listeAdmin" : "help",
+}
+
+###
+
+GET http://localhost:3000/groupes/
+
+###
+
+DELETE http://localhost:3000/groupes/CQiJfcsK5yWKiVd01yh4
+
+
+
+###
+
+PUT http://localhost:3000/groupes/CQiJfcsK5yWKiVd01yh4
+Content-Type: application/json
+
+{
+    "longitude" : "77777"
+}

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const Alerte = require('../models/alerte.js');
+const Groupe = require('../models/groupe.js');
 const firebase = require('../configurations/db');
 const firestore = firebase.firestore();
 
@@ -21,17 +21,24 @@ app.all('*', function (req, res, next) {
 // Get all
 app.get('/', async (req, res) => {
 	try {
-		const alertes = await firestore.collection('alertes');
-		const data = await alertes.get();
-		var alertesArray = [];
+		const groupes = await firestore.collection('groupes');
+		const data = await groupes.get();
+		var groupesArray = [];
 		if (data.empty) {
 			res.status(404).send('No alerts found');
 		} else {
 			data.forEach(doc => {
-				const alerte = new Alerte(doc.id, doc.data().typeAlerte);
-				alertesArray.push(alerte);
+				const groupe = new Groupe(
+					doc.data().id,
+					doc.data().nom,
+					doc.data().photo,
+					doc.data().listeUtilisateurs,
+					doc.data().listeMessages,
+					doc.data().listeAdmin
+				);
+				usersArray.push(groupe);
 			});
-			res.status(200).json(alertesArray);
+			res.status(200).json(groupesArray);
 		}
 	} catch (error) {
 		res.status(500).send(error.message);
@@ -42,13 +49,13 @@ app.get('/', async (req, res) => {
 app.get('/:id', async (req, res) => {
 	try {
 		const id = req.params.id;
-		const alertes = await firestore.collection('alertes').doc(id);
-		const data = await alertes.get();
+		const groupes = await firestore.collection('groupes').doc(id);
+		const data = await groupes.get();
 		if (!data.exists) {
-			res.status(404).json('Alert not found');
+			res.status(404).json('Group not found');
 		} else {
-			alerte = new Alerte(data.id, data.data().typeAlerte);
-			res.status(200).json(alerte);
+			groupe = new Groupe(data.id, data.data().typeGroupe);
+			res.status(200).json(groupe);
 		}
 	} catch (error) {
 		res.send(error.message);
@@ -59,7 +66,7 @@ app.get('/:id', async (req, res) => {
 app.post('/', async (req, res) => {
 	try {
 		const data = req.body;
-		await firestore.collection('alertes').doc().set(data);
+		await firestore.collection('groupes').doc().set(data);
 		res.status(201).json(data);
 	} catch (error) {
 		res.status(400).send(error.message);
@@ -71,13 +78,13 @@ app.put('/:id', async (req, res) => {
 	try {
 		const id = req.params.id;
 		const data = req.body;
-		const alertes = await firestore.collection('alertes').doc(id);
-		const doc = await alertes.get();
+		const groupes = await firestore.collection('groupes').doc(id);
+		const doc = await groupes.get();
 		if (!doc.exists) {
-			res.status(404).json('Alert not found');
+			res.status(404).json('Group not found');
 		} else {
-			await alertes.update(data);
-			res.status(201).json('Alert updated successfully');
+			await groupes.update(data);
+			res.status(201).json('Group updated successfuly');
 		}
 	} catch (error) {
 		res.status(400).send(error.message);
@@ -88,13 +95,13 @@ app.put('/:id', async (req, res) => {
 app.delete('/:id', async (req, res) => {
 	try {
 		const id = req.params.id;
-		const alertes = await firestore.collection('alertes').doc(id);
-		const data = await alertes.get();
+		const groupes = await firestore.collection('groupes').doc(id);
+		const data = await groupes.get();
 		if (!data.exists) {
-			res.status(404).json('Alert not found');
+			res.status(404).json('Group not found');
 		} else {
-			await firestore.collection('alertes').doc(id).delete();
-			res.status(200).json('Alert deleted successfuly');
+			await firestore.collection('groupes').doc(id).delete();
+			res.status(200).json('Group deleted successfully');
 		}
 	} catch (error) {
 		res.status(400).send(error.message);

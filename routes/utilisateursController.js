@@ -59,7 +59,7 @@ app.get('/:id', async (req, res) => {
 		const user = await firestore.collection('utilisateurs').doc(id);
 		const data = await user.get();
 		if (!data.exists) {
-			res.status(404).json('Utilisateur not found');
+			res.status(404).json('User not found');
 		} else {
 			utilisateur = new Utilisateur(
 				data.id,
@@ -102,10 +102,10 @@ app.put('/:id', async (req, res) => {
 		const user = await firestore.collection('utilisateurs').doc(id);
 		const doc = await user.get();
 		if (!doc.exists) {
-			res.status(404).json('Utilisateur not found');
+			res.status(404).json('User not found');
 		} else {
 			await user.update(data);
-			res.status(201).json('Utilisateur mis à jour successfuly');
+			res.status(201).json('User updated successfully');
 		}
 	} catch (error) {
 		res.status(400).send(error.message);
@@ -119,10 +119,10 @@ app.delete('/:id', async (req, res) => {
 		const user = await firestore.collection('utilisateurs').doc(id);
 		const data = await user.get();
 		if (!data.exists) {
-			res.status(404).json('Utilisateur not found');
+			res.status(404).json('User not found');
 		} else {
 			await firestore.collection('utilisateurs').doc(id).delete();
-			res.status(200).json('Utilisateur supprimé successfuly');
+			res.status(200).json('User deleted successfully');
 		}
 	} catch (error) {
 		res.status(400).send(error.message);

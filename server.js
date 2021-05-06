@@ -6,12 +6,17 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// router d'Utilisateur
-const utilisateursRouter = require('./routes/utilisateursController.js');
-app.use('/utilisateurs', utilisateursRouter);
+// routeur d'Utilisateur
+const utilisateursRouteur = require('./routes/utilisateursController.js');
+app.use('/utilisateurs', utilisateursRouteur);
 
-// router d'Alerte
-const alertesRouter = require('./routes/alertesController.js');
-app.use('/alertes', alertesRouter);
+// routeur d'Alerte
+const alertesRouteur = require('./routes/alertesController.js');
+app.use('/alertes', alertesRouteur);
+
+// routeur de Groupe
+const groupesRouteur = require('./routes/groupesController.js');
+app.use('/alertes', groupesRouteur);
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`));
