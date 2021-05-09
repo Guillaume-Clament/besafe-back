@@ -19,4 +19,12 @@ const groupesRouteur = require('./routes/groupesController.js');
 app.use('/alertes', groupesRouteur);
 
 
+// router de Message
+const messagesRouter = require('./routes/messagesController.js');
+app.use('/messages', messagesRouter);
+
+// router de Trajet
+const trajetsRouter = require('./routes/trajetsController.js');
+app.use('/trajets', trajetsRouter);
+
 app.listen(port, () => console.log(`Example app listening on port ${port}`));
